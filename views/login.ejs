@@ -39,13 +39,15 @@
                         </div>
                     </form>
                     <div class="feedback hidden" id="feedback_box"></div>
-
                 </div>
-                <% include footer.ejs %>
             </div>
         </div>
 
         <!-- Required Scripts -->
+        <script src="/js/main.js"></script>
         <script src="/js/welcome.js"></script>
+        <script>
+            document.getElementById('login_form').addEventListener('submit', e => makeLogin(e));
+        </script>
     </body>
     </html>
