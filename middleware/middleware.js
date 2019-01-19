@@ -36,7 +36,7 @@ module.exports = {
       return next()
     }
     //res.status(500).json({status:"error",message:"UnAuthorized Access"})
-    res.redirect('/user/login')
+    res.redirect('/user/login?ref=' + req.protocol + '://' + req.get('host') + req.originalUrl);
   },
   checkFeedOwner: (req, res, next) => {
     if (req.isAuthenticated()) {

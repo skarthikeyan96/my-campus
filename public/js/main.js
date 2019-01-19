@@ -165,7 +165,8 @@ makeLogin = (e) => {
                 }
                 app.setUserInfo(user);
 
-                location.href = '/feed';
+                location.href = '/tasks';
+                // location.href = window.location.href.slice(window.location.href.indexOf('?') + 1).split('=')[1];
             } else {
                 showSuccess('Some Error occured');
             }
