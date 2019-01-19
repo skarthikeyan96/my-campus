@@ -49,7 +49,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
-app.use('/post',PostRouter) // Routes to post the discusion
+app.use('/feed',PostRouter) // Routes to post the discusion
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
