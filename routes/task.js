@@ -31,7 +31,7 @@ router.post('/create',middleware.isLoggedIn,(req,res)=>{
 router.get('/view', middleware.isLoggedIn, (req, res) => {
   Task.find({}, function (err, task) {
     if (!err) {
-      res.render("tasks",{data:task});
+      res.render("tasks", {data:task});
     }
     else {
       res.json(500).json({status:"error",message:err.message})
