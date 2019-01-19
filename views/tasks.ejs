@@ -21,14 +21,19 @@
         <div class="">
 
             here all tasks will render
-
-            <% data.map(t => { %>
+            <div>
+            <% data.forEach(function(post){ %>
+            <p><%= post.heading %></p>
+            <p><%= post.description %></p>
+            <p><%= post.heading %></p>
+            </div>
+                <!-- <% data.map(t => { %>
                 <div>
                     <span><% t.heading %></span>
                     <span><% t.description %></span>
                     <span><% t.deadline %></span>
                 </div>
-            <% }) %>
+            <% }) %> -->
 
             </div>
 
