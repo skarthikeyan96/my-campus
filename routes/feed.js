@@ -4,7 +4,7 @@ const Feed = require('../models/feed');
 const router = express.Router();
 
 router.get("/create",middleware.isLoggedIn,(req,res)=>{
-    res.send("create route")
+    res.render("/feed/Feed")
 })
 
 router.post("/create", middleware.isLoggedIn, (req, res) => {
@@ -37,16 +37,27 @@ router.get("/view",(req,res)=>{
 })
 
 // Edit Learning 
-app.get('/:id/edit', middleware.checkFeedOwner, (req, res) => {
+router.get('/:id/edit', middleware.checkFeedOwner, (req, res) => {
     Feed.findById(req.params.id, (err, post) => {
       res.render('edit', { post: post })
     }); 
   });
+
+//
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
+    Feed.findById(req.params.id).populate("comments").exec(function (err, found) {
+      if (!err) {
+        //render the show template
+        res.render("show", { data: found })
+      }
+    })
+  })
+  
 // Update Learning 
-app.put('/:id', middleware.checkFeedOwner, (req, res) => {
+router.put('/:id', middleware.checkFeedOwner, (req, res) => {
     Feed.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
       if (!err) {
-        res.redirect(`/learning/${updatedPost._id}`)
+        res.redirect(`/feed/${updatedPost._id}`)
       }
       else {
         console.log(err)
