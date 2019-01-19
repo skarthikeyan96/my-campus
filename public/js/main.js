@@ -19,19 +19,11 @@ const anonUser = {
 
 class _app {
     constructor() {
-        const u = localStorage.getItem('whiteboard.user');
+        const u = localStorage.getItem('myCampus.user');
         if (u) {
             this.user = JSON.parse(u);
         } else {
             this.user = anonUser;
-        }
-        
-        // App subdomain for Hasura API endpoints
-        this.config = { project: 'ditz97' }
-        
-        this.urls = {
-            auth: "https://auth." + this.config.project + ".hasura-app.io/",
-            data: "https://data." + this.config.project + ".hasura-app.io/"
         }
 
         this.groups = { data: [], dirty: true, active: -1 };
@@ -61,21 +53,21 @@ class _app {
         this.user.username = username;
         this.saveUser();
     }
-    
+
     setUserInfo(userInfo) {
         this.user.id = userInfo.hasura_id;
         this.user.roles = userInfo.hasura_roles;
         this.user.token = userInfo.auth_token;
-        
+
         ['name', 'username', 'email', 'mobile'].map(x => {
             this.user[x] = userInfo[x] ? userInfo[x] : this.user[x];
         });
-        
+
         this.saveUser();
     }
-    
+
     saveUser() {
-        localStorage.setItem('whiteboard.user', JSON.stringify(this.user));
+        localStorage.setItem('myCampus.user', JSON.stringify(this.user));
     }
 
     updateGroupData(postFn) {
@@ -91,13 +83,13 @@ class _app {
             });
         }
     }
-    
+
     clearUser() {
         this.user = anonUser;
         this.groups.data = []; this.groups.dirty = true;
         this.saveUser();
     }
-    
+
     clearSession() { this.clearUser(); }
 };
 

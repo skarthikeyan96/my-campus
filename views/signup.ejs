@@ -43,6 +43,15 @@
                     </div>
 
                     <div class="form-item">
+                        <label><i class="fa fa-cog"></i></label>
+                        <select id="su_user_type">
+                            <option value="">Select</option>
+                            <option value="student">Student</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="form-item">
                         <input id="signup_btn" type="submit" value="Sign-Up">
                     </div>
                 </form>
@@ -50,6 +59,12 @@
             </div>
             <% include footer.ejs %>
         </div>
-
+        
+        <!-- Required Scripts -->
+        <script src="/js/main.js"></script>
+        <script src="/js/welcome.js"></script>
+        <script>
+            document.getElementById('signup_form').addEventListener('submit', e => makeSignup(e));
+        </script>
     </body>
     </html>
