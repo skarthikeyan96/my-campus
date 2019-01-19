@@ -9,7 +9,6 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "dot-env": "0.0.1",
     "dotenv": "^6.2.0",
     "ejs": "~2.5.7",
     "express": "~4.16.0",

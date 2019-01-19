@@ -1,5 +1,5 @@
 var path = require('path');
-var dotenv = require('dotenv').config({path: __dirname + '/.env'})
+var dotenv = require('dotenv');
 var createError = require('http-errors');
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -16,6 +16,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const bodyParser=require('body-parser');
+
+dotenv.config({
+  path: __dirname + '/.env'
+});
+
 //setting up mongoose
 mongoose.connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true }) // test -- db
 //setting up passport
