@@ -70,7 +70,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const PORT = process.env.PORT || 1337;
+const PORT = process.env.PORT || 50000;
 app.listen(PORT, () => {
   console.log("App is started on post " + PORT);
 });
