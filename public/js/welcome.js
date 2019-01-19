@@ -41,7 +41,7 @@ makeLogin = (e) => {
         }
         app.setUserInfo(user);
 
-        // location.href = '/feed';
+        location.href = '/feed';
       } else {
         showSuccess('Some Error occured');
       }
@@ -82,7 +82,7 @@ makeSignup = e => {
         }
         app.setUserInfo(user);
 
-        // location.href = '/feed';
+        location.href = '/feed';
       } else {
         showSuccess('Some Error occured');
       }
