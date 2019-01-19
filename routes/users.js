@@ -6,7 +6,9 @@ const User = require('../models/user');
 const router = express.Router();
 /* GET users listing. */
 router.get('/register', function (req, res, next) {
-  res.render('signup.ejs');
+  res.render('signup.ejs', {
+    title: 'My Campus | Signup'
+  });
 });
 
 router.get('/login', (req, res) => {

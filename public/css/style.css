@@ -8,7 +8,7 @@ body {
     align-items: center;
     width: 100vh;
     overflow: hidden;
-    background-image: url(https://s1.wp.com/home.logged-out/page-rey-2/img/hero-icons.svg);
+    /* background-image: url(https://s1.wp.com/home.logged-out/page-rey-2/img/hero-icons.svg); */
     background-color: rgba(255, 255, 255, 1);
     background-size: cover;
     font-family: verdana;
@@ -186,6 +186,8 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 26px;
+    text-decoration: none !important;
+    color: #444;
 }
 .beta-tag{
     font-size: 8px;
@@ -342,7 +344,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
 
 #login_btn, #signup_btn{
     width: auto !important;
-    height: 2.4em;
+    /* height: 2.4em; */
     display: flex;
     align-items: center;
     justify-content: center;
