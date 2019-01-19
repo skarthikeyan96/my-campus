@@ -18,7 +18,7 @@ const Strategy = require('passport-local').Strategy;
 const bodyParser=require('body-parser');
 //setting up mongoose
 mongoose.connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true }) // test -- db
-//setting up passport 
+//setting up passport
 app.use(require('express-session')({
   secret: `${process.env.EXPRESS_SECRET}`,
   resave: false,
@@ -29,12 +29,12 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     return next();
   });
-  
-//init the passport 
+
+//init the passport
 app.use(passport.initialize());
 // session
 app.use(passport.session());
-// use the Local Strategy 
+// use the Local Strategy
 passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -64,4 +64,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const PORT = process.env.PORT || 1337;
+app.listen(PORT, () => {
+  console.log("App is started on post " + PORT);
+});
+
 module.exports = app;
