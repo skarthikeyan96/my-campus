@@ -17,36 +17,31 @@
 
 <body>
     <div class="container">
-        <h3> Task for newTaskForm</h3>
-        <div class="">
-
-            here all tasks will render
-            <div>
-            <% data.forEach(function(post){ %>
-            <p><%= post.heading %></p>
-            <p><%= post.description %></p>
-            <p><%= post.heading %></p>
-            </div>
-                <!-- <% data.map(t => { %>
-                <div>
-                    <span><% t.heading %></span>
-                    <span><% t.description %></span>
-                    <span><% t.deadline %></span>
-                </div>
-            <% }) %> -->
-            <% }); %>
+        <% include header.ejs %>
+        <h4 align="center"> All Tasks </h3>
+            <ul class="task-list">
+                <% data.forEach(function(post){ %>
+                    <li class="task-item">
+                        <div class="task-head"><%= post.heading %></div>
+                        <div class="task-desc"><%= post.description %></div>
+                        <div class="task-date">
+                            <%= post.created.getDate() %>-
+                            <%= post.created.getMonth() + 1 %>-
+                            <%= post.created.getFullYear() %>
+                        </div>
+                        <a class="task-link" href="/task/view/<%= post._id %>""  >View Task</a>
+                    </li>
+                    <% }); %>
+                </ul>
             </div>
 
+            <!-- Required Scripts -->
+            <script src="/js/main.js"></script>
+            <script src="/js/task.js"></script>
+            <script>
+                document.getElementById('newTaskForm').addEventListener('submit', e => createTask(e));
+            </script>
 
-        </div>
+        </body>
 
-        <!-- Required Scripts -->
-        <script src="/js/main.js"></script>
-        <script src="/js/task.js"></script>
-        <script>
-            document.getElementById('newTaskForm').addEventListener('submit', e => createTask(e));
-        </script>
-
-    </body>
-
-    </html>
+        </html>

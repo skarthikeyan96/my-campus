@@ -7,11 +7,12 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* background-image: url(https://s1.wp.com/home.logged-out/page-rey-2/img/hero-icons.svg); */
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #f7f7f7 !important;
     background-size: cover;
     font-family: verdana;
+    color: #333;
 }
 
 .bm {
@@ -26,15 +27,17 @@ body {
 
 .canvas-fs { position: fixed; top: 0; left: 0; z-index: 5; }
 
+.container {
+    margin-top: 5.5em;
+    margin-bottom: 2em;
+}
+
 .header {
-    color: #eee;
-    position: absolute; left:0; right:0; top: 0;
+    color: #eee; left:0; right:0; top: 0;
     height: 4em; padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 15;
-    background-color: rgba(0,0,0,1);
 }
 
 .header-text {
@@ -166,7 +169,6 @@ body {
     left: 0;
     right: 0;
     color: #444;
-    background: #fff;
     padding: 10px 5%;
     font-family: 'Fredericka the Great', cursive;
 }
@@ -456,6 +458,35 @@ button {
     border: 1px solid rgba(0, 0, 0, .1) !important;
 }
 
+/* Task List */
+.task-list {
+    margin: 1em;
+    list-style: none;
+}
+.task-item {
+    margin: 1em;
+    padding: 1em;
+    background: #fff;
+    box-shadow: 4px 3px 20px 0px #bdbdbd;
+    transition: all .5s;
+}
+.task-item:hover {
+    box-shadow: 0px 0px 5px 0px #bdbdbd;
+}
+.task-item * {padding: .2em;}
+.task-head{
+    font-weight: 500;
+    font-size: 1.1em;
+}
+.task-desc {
+    font-weight: 100;
+    font-size: .9em;
+}
+.task-date,
+.task-link {
+    color: #888;
+    font-size: .8em;
+}
 
 
 @media all and (max-width: 680px) { .intro { font-size: 300%; } }

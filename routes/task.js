@@ -34,17 +34,19 @@ router.get('/view', middleware.isLoggedIn, (req, res) => {
       res.render("tasks", {data:task});
     }
     else {
-      res.json(500).json({status:"error",message:err.message})
+      res.status(500).json({status:"error", message: err.message})
     }
   })
 })
 
 router.get('/view/:id',middleware.isLoggedIn,(req,res)=>{
-  Task.findById(req.params.id,(err,task)=>{
+  Task.findById(req.params.id,(err, task)=>{
     if(!err){
-      return res.send(200).json({status:"success" , message:"Task Found" ,data : task})
+      res.render("task", {task: task});
+    } else {
+      res.status(500).json({status:"error" , message: err.message});
     }
-    return res.send(500).json({status:"failure" , message:err.message})
+
   })
 })
 
