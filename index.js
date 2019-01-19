@@ -4,6 +4,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const MethodOverride = require('method-override');
 // setting up the models
 let User = require('./models/user');
 const indexRouter = require('./routes/index');
@@ -30,12 +31,7 @@ app.use(require('express-session')({
   resave: false,
   saveUninitialized: false
 }))
-//middleware to get the current user
-app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    return next();
-  });
-
+app.use(MethodOverride("_method"))
 //init the passport
 app.use(passport.initialize());
 // session
@@ -54,6 +50,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
+//middleware to get the current user
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  console.log('req.user',req.user)
+  return next();
+});
 app.use('/user', usersRouter);
 app.use('/task',taskRouter) // Routes to post the discusion
 app.use('/feed',FeedRouter)
@@ -61,6 +63,12 @@ app.use('/feed',FeedRouter)
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  //req.flash("success","You have been logged out")
+  res.redirect('/')
+})
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

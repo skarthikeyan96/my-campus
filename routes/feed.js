@@ -4,7 +4,7 @@ const Feed = require('../models/feed');
 const router = express.Router();
 
 router.get("/create",middleware.isLoggedIn,(req,res)=>{
-    res.send("create route")
+    res.render("Feed",{title: 'My Campus | Feed'})
 })
 
 router.post("/create", middleware.isLoggedIn, (req, res) => {
@@ -13,7 +13,7 @@ router.post("/create", middleware.isLoggedIn, (req, res) => {
   let author = {
     id: req.user._id,
     username: req.user.username,
-    firstname: req.user.firstname
+    FullName: req.user.FullName
   }
   let post = { heading: heading, description: newPost, author: author }
   Feed.create(post, (err, new_post) => {
@@ -36,6 +36,36 @@ router.get("/view",(req,res)=>{
     })
 })
 
+// Edit Learning 
+router.get('/:id/edit', middleware.checkFeedOwner, (req, res) => {
+    Feed.findById(req.params.id, (err, post) => {
+      res.render('edit', { post: post })
+    }); 
+  });
+
+//
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
+    Feed.findById(req.params.id).populate("comments").exec(function (err, found) {
+      if (!err) {
+        //render the show template
+        res.render("show", { data: found })
+      }
+    })
+  })
+  
+// Update Learning 
+router.put('/:id', middleware.checkFeedOwner, (req, res) => {
+    Feed.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
+      if (!err) {
+        res.redirect(`/feed/${updatedPost._id}`)
+      }
+      else {
+        console.log(err)
+        res.redirect('/learning')
+      }
+    })
+})
+  
 router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
     Feed.findByIdAndRemove(req.params.id, (err) => {
       if (!err) {
@@ -48,4 +78,3 @@ router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
   
 
 module.exports = router;
-

@@ -3,8 +3,23 @@
         <a href="/" class="wb-t"> My Campus <span class="beta-tag"><em>BETA</em></span></a>
     </div>
     <div class="nav-items">
+        <% if(!currentUser) { %>
         <button class="nav-item"><a href="#">Blog</a></button>
         <button class="nav-item"><a href="https://github.com/skarthikeyan96/my-campus">Github</a></button>
         <button class="nav-item"><a href="/user/login">Login</a></button>
+        <%} else {%>
+        <button class="nav-item"><a href="#">Welcome
+                <%= currentUser.FullName %>
+            </a>
+        </button>
+        <% if(currentUser.isStudent == true && currentUser.isAdmin == false){ %> 
+        <button class="nav-item"><a href="#">Forum</a></button> 
+        <button class="nav-item"><a href="#">Tasks</a></button>
+        <button class="nav-item"><a href="#">Announcements</a></button>
+        <% } else{%>
+        <button class="nav-item"><a href="#">Admin Dashboard</a></button>
+        <button class="nav-item"><a href="#">Add Task</a></button>
+        <% } %>
+        <% } %>
     </div>
 </div>
