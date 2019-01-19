@@ -1,14 +1,14 @@
-var express = require('express');
+const express = require('express');
 const passport = require('passport');
-let User = require('../models/user');
-var router = express.Router();
-
+const jwt = require("jwt-simple")
+const User = require('../models/user');
+const router = express.Router();
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+router.get('/register', function (req, res, next) {
+  res.send('This is a register get route');
 });
 
-router.post("/", (req, res) => {
+router.post("/register", (req, res) => {
   let newUser = new User({ username: req.body.username, FullName: req.body.Fullname, email: req.body.email, isStudent: req.body.isStudent, isAdmin: req.body.isAdmin })
   User.register(newUser, req.body.password, (err, user) => {
     if (err) {
@@ -22,8 +22,24 @@ router.post("/", (req, res) => {
       res.status(200).json({ message: "success" })
     })
   })
-
 })
+
+router.post('/login',function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+      if (err) return res.status(500).json({message:"INTERNAL SERVER ERROR"});
+      if (!user)
+          return res.status(401).json({ SERVER_RESPONSE: 0, SERVER_MESSAGE: `${info.message}` });
+      req.logIn(user, function(err) {
+          if (err)
+              return next(err);
+              //("success",`Successfully logged in to the application ${user.firstname}`)
+              console.log(req.user)
+              const token = jwt.encode({ username: req.user.username}, process.env.JWT_SECRET);
+          return res.status(200).json({ SERVER_RESPONSE: 1, SERVER_MESSAGE: "Logged in!",TOKEN:token});
+      });
+  })(req, res, next);
+});
+
 
 
 module.exports = router;
