@@ -5,8 +5,12 @@ const User = require('../models/user');
 const router = express.Router();
 /* GET users listing. */
 router.get('/register', function (req, res, next) {
-  res.send('This is a register get route');
+  res.render('signup.ejs');
 });
+
+router.get('/login',(req,res)=>{
+  res.render('login.ejs',{title:"My Campus | Login"});
+})
 
 router.post("/register", (req, res) => {
   let newUser = new User({ username: req.body.username, FullName: req.body.Fullname, email: req.body.email, isStudent: req.body.isStudent, isAdmin: req.body.isAdmin })
