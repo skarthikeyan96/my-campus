@@ -15,7 +15,7 @@ router.post("/create", middleware.isLoggedIn, (req, res) => {
     username: req.user.username,
     firstname: req.user.firstname
   }
-  let post = { heading: heading, description: newLearning, author: author }
+  let post = { heading: heading, description: newPost, author: author }
   Feed.create(post, (err, new_post) => {
     if (err) {
       return res.status(500).json({status:"error",message:err.message})
