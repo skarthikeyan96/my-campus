@@ -16,7 +16,7 @@ router.post('/create',middleware.isLoggedIn,(req,res)=>{
      }
     let Deadline = req.body.deadline
     let task = { heading: heading, description: description, author: author,deadline:Deadline }
-    Post.create(post, (err, new_task) => {
+    Task.create(task, (err, new_task) => {
         if (err) {
           console.log(err)
         }
@@ -25,6 +25,17 @@ router.post('/create',middleware.isLoggedIn,(req,res)=>{
           res.status(200).json({status:"success",message:"Task created Successfully"})
         }
       })
+});
+app.get('/view', middleware.isLoggedIn, (req, res) => {
+  Task.find({}, function (err, task) {
+    if (!err) {
+      res.send({data:task});
+    }
+    else {
+      console.log(err);
+    }
+  })
 })
+
 
 module.exports = router;
