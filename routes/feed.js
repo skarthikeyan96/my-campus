@@ -4,7 +4,7 @@ const Feed = require('../models/feed');
 const router = express.Router();
 
 router.get("/create",middleware.isLoggedIn,(req,res)=>{
-    res.render("Feed",{title: 'My Campus | Feed'})
+  res.render("newFeed",{title: 'My Campus | Create a Post'})
 })
 
 router.post("/create", middleware.isLoggedIn, (req, res) => {
@@ -28,53 +28,69 @@ router.post("/create", middleware.isLoggedIn, (req, res) => {
 })
 
 router.get("/view",(req,res)=>{
-    Feed.find({},(err,newpost)=>{
-        if(!err){
-            return res.status(200).json({status:"success",data:newpost})
-        }
-        return res.status(500).json({status:"error",message:err.message})
-    })
+  Feed.find({},(err,newpost)=>{
+    if(!err){
+      res.render("forum", {
+        title: 'My Campus | Feed',
+        data: newpost
+      })
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: err.message
+      })
+    }
+  })
 })
-
-// Edit Learning 
-router.get('/:id/edit', middleware.checkFeedOwner, (req, res) => {
-    Feed.findById(req.params.id, (err, post) => {
-      res.render('edit', { post: post })
-    }); 
-  });
 
 //
-router.get('/:id', middleware.isLoggedIn, (req, res) => {
-    Feed.findById(req.params.id).populate("comments").exec(function (err, found) {
-      if (!err) {
-        //render the show template
-        res.render("show", { data: found })
-      }
-    })
+router.get('view/:id', middleware.isLoggedIn, (req, res) => {
+  Feed.findById(req.params.id, (err, data) => {
+    if (!err) {
+      //render the show template
+      res.render("post", {
+        post: data
+      })
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: err.message
+      })
+    }
   })
-  
-// Update Learning 
-router.put('/:id', middleware.checkFeedOwner, (req, res) => {
-    Feed.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
-      if (!err) {
-        res.redirect(`/feed/${updatedPost._id}`)
-      }
-      else {
-        console.log(err)
-        res.redirect('/learning')
-      }
-    })
+});
+
+// Edit Learning
+router.get('view/:id/edit', middleware.checkFeedOwner, (req, res) => {
+  Feed.findById(req.params.id, (err, post) => {
+    res.render('editPost', { post: post })
+  });
+});
+
+
+
+// Update Learning
+router.put('update/:id', middleware.checkFeedOwner, (req, res) => {
+  Feed.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
+    if (!err) {
+      res.redirect(`/feed/${updatedPost._id}`)
+    }
+    else {
+      console.log(err)
+      res.redirect('/learning')
+    }
+  })
 })
-  
+
 router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
-    Feed.findByIdAndRemove(req.params.id, (err) => {
-      if (!err) {
-        return res.status(200).json({status:"success",message:"Deleted Successfully"})
-      }
-      return res.status(500).json({status:"failure",message:err.message})
-    })
+  Feed.findByIdAndRemove(req.params.id, (err) => {
+    if (!err) {
+      return res.status(200).json({status:"success",message:"Deleted Successfully"})
+    }
+    return res.status(500).json({status:"failure",message:err.message})
   })
-  
-  
+})
+
+
 
 module.exports = router;

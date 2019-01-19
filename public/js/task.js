@@ -33,3 +33,25 @@ createTask = (e) => {
     })
 };
 
+createPost = (e) => {
+    e.preventDefault();
+    let feed = {
+        heading: document.getElementById('nf_heading').value,
+        description: document.getElementById('nf_description').value
+    };
+
+    console.log(feed);
+
+    postAPICall(`${baseURL}/feed/create`, feed, (err, res) => {
+        if (err) {
+            console.log(err);
+            showError(err.message);
+        } else {
+            console.log(res);
+            showSuccess(res.message);
+        }
+    })
+
+    e.target.reset();
+};
+

@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        <% title %>
+        My Campus | Create Feed
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/css/style.css' />
@@ -17,17 +17,39 @@
 
 <body>
     <div class="container">
-        <div class="wl-wrapper" id="wl_wrapper">
-                <% include header.ejs %>
-            <div class="content">
-                Welcome User
-            </div>
+        <% include header.ejs %>
+        <h2> Create a Post</h2>
+        <div class="">
+            <form class="task-form" id="newPostForm">
+
+                <div class="form-item">
+                    <label>Title</label>
+                    <input type="text" id="nf_heading" placeholder="Title" autofocus required></input>
+                </div>
+
+                <div class="form-item">
+                    <label>Description</i></label>
+                    <textarea rows="10" cols="50" id="nf_description" placeholder="Enter the description of task"
+                    required></textarea>
+                </div>
+
+                <div class="form-item">
+                    <Button class="btn btn-primary" type="submit"> Create</Button>
+                </div>
+            </form>
+            <div class="feedback hidden" id="feedback_box"></div>
         </div>
+
+
     </div>
 
     <!-- Required Scripts -->
     <script src="/js/main.js"></script>
     <script src="/js/task.js"></script>
+    <script>
+        document.getElementById('newPostForm').addEventListener('submit', e => createPost(e));
+    </script>
 
 </body>
+
 </html>
