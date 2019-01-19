@@ -8,7 +8,7 @@ const logger = require('morgan');
 let User = require('./models/user');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const PostRouter = require('./routes/post')
+const taskRouter = require('./routes/task')
 var app = express();
 // setting up the passport
 const session = require('express-session');
@@ -54,7 +54,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
-app.use('/feed',PostRouter) // Routes to post the discusion
+app.use('/task',taskRouter) // Routes to post the discusion
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

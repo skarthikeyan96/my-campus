@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
-const PostSchema = new mongoose.Schema({
+const TaskSchema = new mongoose.Schema({
     heading : String,
     description : String,
-    
     author :{
         id : {
             type:mongoose.Schema.Types.ObjectId,
             ref : "User"
         },
         username  : String,
-        firstname : String
+        fullname : String
     },
     created:{
         type : Date,
@@ -20,4 +19,4 @@ const PostSchema = new mongoose.Schema({
    }
 
 })
-module.exports = mongoose.model("Post",PostSchema)
+module.exports = mongoose.model("Task",TaskSchema)
