@@ -44,7 +44,7 @@ router.get("/view",(req,res)=>{
 })
 
 //
-router.get('view/:id', middleware.isLoggedIn, (req, res) => {
+router.get('/view/:id', middleware.isLoggedIn, (req, res) => {
   Feed.findById(req.params.id, (err, data) => {
     if (!err) {
       //render the show template
@@ -61,7 +61,7 @@ router.get('view/:id', middleware.isLoggedIn, (req, res) => {
 });
 
 // Edit Learning
-router.get('view/:id/edit', middleware.checkFeedOwner, (req, res) => {
+router.get('/view/:id/edit', middleware.checkFeedOwner, (req, res) => {
   Feed.findById(req.params.id, (err, post) => {
     res.render('editPost', { post: post })
   });
@@ -70,7 +70,7 @@ router.get('view/:id/edit', middleware.checkFeedOwner, (req, res) => {
 
 
 // Update Learning
-router.put('update/:id', middleware.checkFeedOwner, (req, res) => {
+router.put('/update/:id', middleware.checkFeedOwner, (req, res) => {
   Feed.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
     if (!err) {
       res.redirect(`/feed/${updatedPost._id}`)
