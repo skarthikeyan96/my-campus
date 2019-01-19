@@ -1,10 +1,10 @@
 // API endpoint declarations
 
 // Global vars
-var app, appui, chatui, wboard;
+let app, appui, chatui, wboard;
 
-var def_log = (e, err = true) => {
-    var dt = (new Date()).toLocaleString();
+let def_log = (e, err = true) => {
+    let dt = (new Date()).toLocaleString();
     console.log("[" + (err ? "ERROR" : "INFO ") + " | " + dt + "]: " + e);
 }
 
@@ -55,9 +55,11 @@ class _app {
     }
 
     setUserInfo(userInfo) {
-        this.user.id = userInfo.hasura_id;
+        this.user.id = userInfo.id;
         this.user.roles = userInfo.hasura_roles;
-        this.user.token = userInfo.auth_token;
+        this.user.token = userInfo.token;
+        this.user.isAdmin = userInfo.isAdmin;
+        this.user.isStudent = userInfo.isStudent;
 
         ['name', 'username', 'email', 'mobile'].map(x => {
             this.user[x] = userInfo[x] ? userInfo[x] : this.user[x];
@@ -96,7 +98,7 @@ class _app {
 app = new _app();
 
 // Utility functions
-var groupExSelect = (obj, groupSelector, activeKlass) => {
+let groupExSelect = (obj, groupSelector, activeKlass) => {
     let act = document.querySelectorAll('.' + groupSelector + '.' + activeKlass)[0];
 
     if (act && act.classList.contains(activeKlass))
@@ -104,7 +106,7 @@ var groupExSelect = (obj, groupSelector, activeKlass) => {
     obj.classList.toggle(activeKlass);
 }
 
-var toggleFeedbackTextClass = (obj, rKlass, aKlass, text) => {
+let toggleFeedbackTextClass = (obj, rKlass, aKlass, text) => {
     obj.blur();
     obj.classList.remove(rKlass); obj.classList.add(aKlass);
 
@@ -112,7 +114,7 @@ var toggleFeedbackTextClass = (obj, rKlass, aKlass, text) => {
         obj.value = text;
 }
 
-var resetFeedbackTextClass = (obj, filterKlasses) => {
+let resetFeedbackTextClass = (obj, filterKlasses) => {
     let shouldClear = false;
     filterKlasses.map((klass) => {
         if (!shouldClear && obj.classList.contains(klass))

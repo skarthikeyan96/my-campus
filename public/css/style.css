@@ -213,9 +213,11 @@ body {
     z-index: 20;
     transition: all 0.4s cubic-bezier(0, 0, 0.04, 1);
 }
-.nav-item > span { transform: translate(10%, 5%); }
+.nav-item > a { transform: translate(10%, 5%); }
 .nav-item:hover {
     color: #02b875;
+    background-color: #ddd;
+    text-decoration: none;
 }
 
 
