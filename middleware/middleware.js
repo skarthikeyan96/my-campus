@@ -35,7 +35,9 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next()
     }
-    res.status(500).json({status:"error",message:"UnAuthorized Access"})
+    //res.status(500).json({status:"error",message:"UnAuthorized Access"})
+    req.flash("error","Please login first")
+    res.redirect('/login')
   }
 
 }
