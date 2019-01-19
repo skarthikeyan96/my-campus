@@ -6,7 +6,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vh;
+    width: 100%;
     overflow: hidden;
     /* background-image: url(https://s1.wp.com/home.logged-out/page-rey-2/img/hero-icons.svg); */
     background-color: rgba(255, 255, 255, 1);
@@ -296,7 +296,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     position: relative;
 }
 
-.form-item {
+.login-form .form-item {
     margin: .5em 0;
     width: 100%;
     position: relative;
@@ -306,8 +306,7 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
     align-items: center;
 }
 
-
-.form-item label {
+.login-form .form-item label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -433,7 +432,29 @@ button {
     background-color: #ffe5eb !important;
 }
 
+/* Style for task */
+.task-form {
+    width: 80%;
 
+}
+.task-form .form-item {
+    display: flex;
+    margin: 1em;
+}
+.task-form .form-item label {
+    width: 20%;
+}
+.task-form .form-item input,
+.task-form .form-item textarea {
+    width: 80%;
+    color: #333;
+    font-size: .9em;
+    border: 1px dashed rgba(0, 0, 0, .1) !important;
+}
+.task-form .form-item input:focus,
+.task-form .form-item textarea:focus {
+    border: 1px solid rgba(0, 0, 0, .1) !important;
+}
 
 
 

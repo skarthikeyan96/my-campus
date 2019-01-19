@@ -3,9 +3,10 @@ const middleware = require('../middleware/middleware')
 const Task = require('../models/task')
 const router = express.Router();
 
-router.get('/create',middleware.isLoggedIn,(req,res)=>{
-    res.render("task")
-})
+router.get('/create', middleware.isLoggedIn, (req, res) => {
+    res.render("newTask")
+});
+
 router.post('/create',middleware.isLoggedIn,(req,res)=>{
     let heading = req.body.heading;
     let description = req.body.description;
@@ -37,6 +38,5 @@ router.get('/view', middleware.isLoggedIn, (req, res) => {
     }
   })
 })
-
 
 module.exports = router;
