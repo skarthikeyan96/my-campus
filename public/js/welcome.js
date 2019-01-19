@@ -24,13 +24,27 @@ makeLogin = (e) => {
   requestAPI(`${baseURL}/user/login`, data, (err, res) => {
     if (err) {
       console.error(err);
-      showError(err.SERVER_MESSAGE);
+      showError(err.message);
     } else {
       console.log(res);
-      showSuccess(res.SERVER_MESSAGE);
+      showSuccess(res.message);
 
-      // TODO: Save USER and Redirect
+      if (res.status) {
+        // Save USER and Redirect
+        let user = {
+          id: res.data._id,
+          username: res.data.username,
+          name: res.data.FullName,
+          isStudent: res.data.isStudent,
+          isAdmin: res.data.isAdmin,
+          token: res.token
+        }
+        app.setUserInfo(user);
 
+        // location.href = '/feed';
+      } else {
+        showSuccess('Some Error occured');
+      }
     }
   });
 };
@@ -51,10 +65,27 @@ makeSignup = e => {
   requestAPI(`${baseURL}/user/register`, data, (err, res) => {
     if (err) {
       console.error(err);
-      showError(err.SERVER_MESSAGE);
+      showError(err.message);
     } else {
       console.log(res);
-      showSuccess(res.SERVER_MESSAGE);
+      showSuccess(res.message);
+
+      if (res.status) {
+        // Save USER and Redirect
+        let user = {
+          id: res.data._id,
+          username: res.data.username,
+          name: res.data.FullName,
+          isStudent: res.data.isStudent,
+          isAdmin: res.data.isAdmin,
+          token: res.token
+        }
+        app.setUserInfo(user);
+
+        // location.href = '/feed';
+      } else {
+        showSuccess('Some Error occured');
+      }
     }
   });
 
