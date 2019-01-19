@@ -63,12 +63,6 @@ app.use('/feed',FeedRouter)
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-app.get('/logout', (req, res) => {
-  req.logout();
-  //req.flash("success","You have been logged out")
-  res.redirect('/')
-})
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
