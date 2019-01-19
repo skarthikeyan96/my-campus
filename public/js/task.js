@@ -12,8 +12,18 @@ postAPICall = (url, data, callback) => {
         .catch(err => callback(err, null));
 };
 
-createTask = (task) => {
-    requestAPI(`${baseURL}/task/create`, task, (err, res) => {
+createTask = (e) => {
+    e.preventDefault();
+    let task = {
+        heading: document.getElementById('nt_heading').value,
+        description: document.getElementById('nt_description').value,
+        deadline: document.getElementById('nt_deaddline').value,
+    };
+
+    console.log(task);
+
+
+    postAPICall(`${baseURL}/task/create`, task, (err, res) => {
         if (err) {
             console.log(err);
         } else {
@@ -21,3 +31,4 @@ createTask = (task) => {
         }
     })
 };
+

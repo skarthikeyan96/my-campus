@@ -184,8 +184,6 @@ makeSignup = e => {
         isAdmin: document.getElementById('su_user_type').value === 'admin' ? true : false
     };
 
-    console.log(data);
-
     requestAPI(`${baseURL}/user/register`, data, (err, res) => {
         if (err) {
             console.error(err);
