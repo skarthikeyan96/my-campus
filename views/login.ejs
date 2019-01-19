@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="main" id="main">
+        <div class="wl-wrapper" id="wl_wrapper">
+            <% include header.ejs %>
+            <div class="content">
+                <div class="intro">
+                    <form class="login-form" id="login_form">
+                        <div class="pop-text">Sign in</div>
+                        <div class="form-item">
+                            <label><i class="fa fa-user"></i> </label>
+                            <input type="text" id="li_uname" placeholder="Username" autofocus required></input>
+                        </div>
+                        <br>
+                        <div class="form-item">
+                            <label><i class="fa fa-lock"></i></label>
+                            <input type="password" id="li_pass" placeholder="Password" required></input>
+                        </div>
+                        <div class="form-item">
+                            <input id="login_btn" type="submit" value="Login">
+                        </div>
+
+                        <div class=""><br>
+                            <span id="open-signup" style="font-size: .8em; cursor: pointer;">Don't have an account yet? <u>
+                                <a href="/user/register">Signup</a></a> </u></span>
+                            </div>
+                        </form>
+                        <div class="feedback hidden" id="feedback_box"></div>
+                    </div>
+                </div>
+                <% include footer.ejs %>
+            </div>
+        </div>
+    </body>
+    </html>
