@@ -36,7 +36,16 @@ router.get("/view",(req,res)=>{
     })
 })
 
-
+router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
+    Feed.findByIdAndRemove(req.params.id, (err) => {
+      if (!err) {
+        return res.status(200).json({status:"success",message:"Deleted Successfully"})
+      }
+      return res.status(500).json({status:"failure",message:err.message})
+    })
+  })
+  
+  
 
 module.exports = router;
 

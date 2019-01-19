@@ -36,8 +36,28 @@ module.exports = {
       return next()
     }
     //res.status(500).json({status:"error",message:"UnAuthorized Access"})
-    req.flash("error","Please login first")
     res.redirect('/login')
-  }
+  },
+  checkFeedOwner: (req, res, next) => {
+    if (req.isAuthenticated()) {
+        Feed.findById(req.params.id, (err, post) => {
+            if (!err) {
+                //user owns the campground
+                if (post.author.id.equals(req.user._id)) {
+                    next()
+                } else {
+                    res.redirect('back')
+                }
+            }
+            else {
+                res.redirect('back')
+            }
+        })
+    }
+    else {
+        res.send("You should be logged in to do that")
+    }
+}
+
 
 }
