@@ -39,4 +39,13 @@ router.get('/view', middleware.isLoggedIn, (req, res) => {
   })
 })
 
+router.get('/view/:id',middleware.isLoggedIn,(req,res)=>{
+  Task.findById(req.params.id,(err,task)=>{
+    if(!err){
+      return res.send(200).json({status:"success" , message:"Task Found" ,data : task})
+    }
+    return res.send(500).json({status:"failure" , message:err.message})
+  })
+})
+
 module.exports = router;
