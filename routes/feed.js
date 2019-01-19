@@ -4,12 +4,12 @@ const Feed = require('../models/feed');
 const router = express.Router();
 
 router.get("/create",middleware.isLoggedIn,(req,res)=>{
-    res.render("Feed")
+    res.send("create route")
 })
 
 router.post("/create", middleware.isLoggedIn, (req, res) => {
   let heading = req.body.heading;
-  let newPost = req.body.post;
+  let newPost = req.body.description;
   let author = {
     id: req.user._id,
     username: req.user.username,
@@ -21,7 +21,7 @@ router.post("/create", middleware.isLoggedIn, (req, res) => {
       return res.status(500).json({status:"error",message:err.message})
     }
     else {
-      console.log(`Added new learning ${new_learning}`)
+      console.log(`Added new Post ${new_post}`)
       res.status(200).json({status:"success",message:"Post successfully created"})
     }
   })
