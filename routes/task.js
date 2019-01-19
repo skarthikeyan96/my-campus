@@ -31,11 +31,20 @@ router.post('/create',middleware.isLoggedIn,(req,res)=>{
 router.get('/view', middleware.isLoggedIn, (req, res) => {
   Task.find({}, function (err, task) {
     if (!err) {
-      res.send({data:task});
+      res.render("tasks",{data:task});
     }
     else {
-      console.log(err);
+      res.json(500).json({status:"error",message:err.message})
     }
+  })
+})
+
+router.get('/view/:id',middleware.isLoggedIn,(req,res)=>{
+  Task.findById(req.params.id,(err,task)=>{
+    if(!err){
+      return res.send(200).json({status:"success" , message:"Task Found" ,data : task})
+    }
+    return res.send(500).json({status:"failure" , message:err.message})
   })
 })
 
