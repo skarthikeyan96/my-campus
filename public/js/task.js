@@ -22,7 +22,6 @@ createTask = (e) => {
 
     console.log(task);
 
-
     postAPICall(`${baseURL}/task/create`, task, (err, res) => {
         if (err) {
             console.log(err);

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        My Campus | Task
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <% include header.ejs %>
+        <h5> Task: <%= task.heading %>  </h5>
+        <span class="task-date"> <%= task.created.getDate() %>-
+            <%= task.created.getMonth() + 1 %>-
+            <%= task.created.getFullYear() %> </span>
+            <p class="task-desc"> <%= task.description %> </p>
+
+            <form id="task-form">
+                <div class="form-item">
+                    <textarea rows="20" cols="100" id="task_solution" placeholder="Write your solution here" required></textarea>
+                </div>
+
+                <div class="form-item">
+                    <Button class="btn btn-primary" type="submit"> Submit </Button>
+                </div>
+            </form>
+            <div class="feedback hidden" id="feedback_box"></div>
+        </div>
+
+        <!-- Required Scripts -->
+        <script src="/js/main.js"></script>
+        <script src="/js/task.js"></script>
+        <script>
+            // document.getElementById('newTaskForm').addEventListener('submit', e => createTask(e));
+        </script>
+
+    </body>
+
+    </html>
