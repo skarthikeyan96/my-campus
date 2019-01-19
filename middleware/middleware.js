@@ -30,5 +30,12 @@ let checkToken = (req, res, next) => {
 };
 
 module.exports = {
-  checkToken: checkToken
+  checkToken: checkToken,
+  isLoggedIn : (req, res, next) =>{
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    res.status(500).json({status:"error",message:"UnAuthorized Access"})
+  }
+
 }
