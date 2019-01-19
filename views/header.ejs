@@ -4,43 +4,20 @@
     </div>
     <div class="nav-items">
         <% if(!currentUser) { %>
-<<<<<<< HEAD
             <button class="nav-item"><a href="#">Blog</a></button>
             <button class="nav-item"><a href="https://github.com/skarthikeyan96/my-campus">Github</a></button>
             <button class="nav-item"><a href="/user/login">Login</a></button>
-            <%} else {%>
-            <button class="nav-item"><a href="#">Welcome
-                    <%= currentUser.FullName %>
-                </a>
-            </button>
+        <%} else {%>
             <% if(currentUser.isStudent == true && currentUser.isAdmin == false){ %>
                 <button class="nav-item"><a href="/feed/view">Forum</a></button>
                 <button class="nav-item"><a href="/task/view">Tasks</a></button>
                 <button class="nav-item"><a href="#">Announcements</a></button>
             <% } else{%>
                 <button class="nav-item"><a href="#">Admin Dashboard</a></button>
-                <button class="nav-item"><a href="#">Add Task</a></button>
+                <button class="nav-item"><a href="/task/create">Add Task</a></button>
             <% } %>
-=======
-        <button class="nav-item"><a href="#">Blog</a></button>
-        <button class="nav-item"><a href="https://github.com/skarthikeyan96/my-campus">Github</a></button>
-        <button class="nav-item"><a href="/user/login">Login</a></button>
-        <%} else {%>
-        <button class="nav-item"><a href="#">Welcome
-                <%= currentUser.FullName %>
-            </a>
-        </button>
-        <% if(currentUser.isStudent == true && currentUser.isAdmin == false){ %> 
-        <button class="nav-item"><a href="#">Forum</a></button> 
-        <button class="nav-item"><a href="#">Tasks</a></button>
-        <button class="nav-item"><a href="#">Announcements</a></button>
-        <button class="nav-item"><a href="/user/logout">Logout</a></button>
-        <% } else{%>
-        <button class="nav-item"><a href="#">Admin Dashboard</a></button>
-        <button class="nav-item"><a href="#">Add Task</a></button>
-        <button class="nav-item"><a href="/user/logout">Logout</a></button>
-        <% } %>
->>>>>>> eeb47f49ce50de69b5fd19dac1adabc2f3998573
+            <button class="nav-item"><a href="#"> <%= currentUser.FullName %> </a></button>
+            <button class="nav-item" onclick="logout()"><a href="#"> Logout </a></button>
         <% } %>
     </div>
 </div>
