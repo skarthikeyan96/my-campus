@@ -36,6 +36,25 @@ router.get("/view",(req,res)=>{
     })
 })
 
+// Edit Learning 
+app.get('/:id/edit', middleware.checkFeedOwner, (req, res) => {
+    Feed.findById(req.params.id, (err, post) => {
+      res.render('edit', { post: post })
+    }); 
+  });
+// Update Learning 
+app.put('/:id', middleware.checkFeedOwner, (req, res) => {
+    Feed.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
+      if (!err) {
+        res.redirect(`/learning/${updatedPost._id}`)
+      }
+      else {
+        console.log(err)
+        res.redirect('/learning')
+      }
+    })
+})
+  
 router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
     Feed.findByIdAndRemove(req.params.id, (err) => {
       if (!err) {
@@ -48,4 +67,3 @@ router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
   
 
 module.exports = router;
-
