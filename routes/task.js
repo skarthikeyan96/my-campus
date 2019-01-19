@@ -34,7 +34,7 @@ router.get('/view', middleware.isLoggedIn, (req, res) => {
       res.render("tasks",{data:task});
     }
     else {
-      console.log(err);
+      res.json(500).json({status:"error",message:err.message})
     }
   })
 })
