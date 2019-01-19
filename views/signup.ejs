@@ -1,15 +1,15 @@
 <!doctype html>
 <html>
 <head>
-    <title>White Board | Signup</title>
+    <title><% title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="/assets/css/style.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Gudea:400,400i,700&amp;subset=latin-ext"
-    rel="stylesheet">
+    <link rel='stylesheet' href='/css/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,41 +19,36 @@
             <% include header.ejs %>
 
             <div class="content">
-                <div class="intro">
-                    <form class="login-form hidden" id="signup_form">
-                        <div class="pop-text">Sign up</div>
+                <form class="login-form " id="signup_form">
+                    <div class="pop-text">Sign up</div>
 
-                        <div class="form-item">
-                            <label><i class="fa fa-user"></i></label>
-                            <input type="text" id="su_name" placeholder="Name" autofocus required></input>
-                        </div>
+                    <div class="form-item">
+                        <label><i class="fa fa-user"></i></label>
+                        <input type="text" id="su_name" placeholder="Name" autofocus required></input>
+                    </div>
 
-                        <div class="form-item">
-                            <label><i class="fa fa-envelope"></i></label>
-                            <input type="email" id="su_email" placeholder="Email" required></input>
-                        </div>
+                    <div class="form-item">
+                        <label><i class="fa fa-envelope"></i></label>
+                        <input type="email" id="su_email" placeholder="Email" required></input>
+                    </div>
 
-                        <div class="form-item">
-                            <label><i class="fa fa-user"></i></label>
-                            <input type="text" id="su_uname" placeholder="Username" required></input>
-                        </div>
+                    <div class="form-item">
+                        <label><i class="fa fa-user"></i></label>
+                        <input type="text" id="su_uname" placeholder="Username" required></input>
+                    </div>
 
-                        <div class="form-item">
-                            <label><i class="fa fa-lock"></i></label>
-                            <input type="password" id="su_pass" placeholder="Password" required></input>
-                        </div>
+                    <div class="form-item">
+                        <label><i class="fa fa-lock"></i></label>
+                        <input type="password" id="su_pass" placeholder="Password" required></input>
+                    </div>
 
-                        <div class="form-item">
-                            <input id="signup_btn" type="submit" value="Sign-Up">
-                        </div>
-                        <button id="back-btn" class="close"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-                    </form>
-                    <div class="feedback hidden" id="feedback_box"></div>
-                </div>
-
-                <% include footer.ejs %>
-
+                    <div class="form-item">
+                        <input id="signup_btn" type="submit" value="Sign-Up">
+                    </div>
+                </form>
+                <div class="feedback hidden" id="feedback_box"></div>
             </div>
+            <% include footer.ejs %>
         </div>
 
     </body>

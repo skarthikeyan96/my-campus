@@ -18,29 +18,28 @@
         <div class="wl-wrapper" id="wl_wrapper">
             <% include header.ejs %>
             <div class="content">
-                <div class="intro">
-                    <form class="login-form" id="login_form">
-                        <div class="pop-text">Sign in</div>
-                        <div class="form-item">
-                            <label><i class="fa fa-user"></i> </label>
-                            <input type="text" id="li_uname" placeholder="Username" autofocus required></input>
-                        </div>
-                        <br>
-                        <div class="form-item">
-                            <label><i class="fa fa-lock"></i></label>
-                            <input type="password" id="li_pass" placeholder="Password" required></input>
-                        </div>
-                        <div class="form-item">
-                            <input id="login_btn" type="submit" value="Login">
-                        </div>
-
-                        <div class=""><br>
-                            <span id="open-signup" style="font-size: .8em; cursor: pointer;">Don't have an account yet? <u>
-                                <a href="/user/register">Signup</a></a> </u></span>
-                            </div>
-                        </form>
-                        <div class="feedback hidden" id="feedback_box"></div>
+                <form class="login-form" id="login_form">
+                    <div class="pop-text">Login</div>
+                    <div class="form-item">
+                        <label><i class="fa fa-user"></i> </label>
+                        <input type="text" id="li_uname" placeholder="Username" autofocus required></input>
                     </div>
+                    <br>
+                    <div class="form-item">
+                        <label><i class="fa fa-lock"></i></label>
+                        <input type="password" id="li_pass" placeholder="Password" required></input>
+                    </div>
+                    <div class="form-item">
+                        <input id="login_btn" type="submit" value="Login">
+                    </div>
+
+                    <div class=""><br>
+                        <span id="open-signup" style="font-size: .8em; cursor: pointer;">Don't have an account yet? <u>
+                            <a href="/user/register">Signup</a></a> </u></span>
+                        </div>
+                    </form>
+                    <div class="feedback hidden" id="feedback_box"></div>
+
                 </div>
                 <% include footer.ejs %>
             </div>
