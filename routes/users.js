@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
-const jwt = require("jwt-simple")
+//const jwt = require("jwt-simple")
+const jwt = require("jsonwebtoken")
 const User = require('../models/user');
 const router = express.Router();
 /* GET users listing. */
@@ -10,8 +11,8 @@ router.get('/register', function (req, res, next) {
   });
 });
 
-router.get('/login',(req,res)=>{
-  res.render('login.ejs',{title:"My Campus | Login"});
+router.get('/login', (req, res) => {
+  res.render('login.ejs', { title: "My Campus | Login" });
 })
 
 router.post("/register", (req, res) => {
@@ -30,19 +31,20 @@ router.post("/register", (req, res) => {
   })
 })
 
-router.post('/login',function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-      if (err) return res.status(500).json({message:"INTERNAL SERVER ERROR"});
-      if (!user)
-          return res.status(401).json({ SERVER_RESPONSE: 0, SERVER_MESSAGE: `${info.message}` });
-      req.logIn(user, function(err) {
-          if (err)
-              return next(err);
-              //("success",`Successfully logged in to the application ${user.firstname}`)
-              console.log(req.user)
-              const token = jwt.encode({ username: req.user.username}, process.env.JWT_SECRET);
-          return res.status(200).json({ SERVER_RESPONSE: 1, SERVER_MESSAGE: "Logged in!",TOKEN:token});
-      });
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) return res.status(500).json({ message: "INTERNAL SERVER ERROR" });
+    if (!user)
+      return res.status(401).json({ SERVER_RESPONSE: 0, SERVER_MESSAGE: `${info.message}` });
+    req.logIn(user, function (err) {
+      if (err)
+        return next(err);
+      //("success",`Successfully logged in to the application ${user.firstname}`)
+      console.log(req.user)
+      //const token = jwt.encode({ username: req.user.username}, process.env.JWT_SECRET);
+      const token = jwt.sign({ username: req.user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      return res.status(200).json({ SERVER_RESPONSE: 1, SERVER_MESSAGE: "Logged in!", TOKEN: token });
+    });
   })(req, res, next);
 });
 
