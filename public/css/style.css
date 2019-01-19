@@ -459,7 +459,7 @@ button {
 }
 
 /* Task List */
-.task-list {
+.task-list, .feed-list {
     margin: 1em;
     list-style: none;
 }
@@ -488,6 +488,13 @@ button {
     font-size: .8em;
 }
 
+/* Style for forum */
+.feed-item {
+    padding: 1em;
+    background: #fff;
+    transition: all .5s;
+    border-bottom: 1px dashed #ddd;
+}
 
 @media all and (max-width: 680px) { .intro { font-size: 300%; } }
 @media all and (max-width: 480px) { .intro { font-size: 250%; } }
