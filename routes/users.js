@@ -21,21 +21,22 @@ router.post("/register", (req, res) => {
     if (err) {
       console.log(err)
       console.log(err.message)
-      return res.status(422).json({ message: "failure", error: err.message }) //422 Unprocessable Entity
+      return res.status(422).json({ status: "error", msg: err.message }) //422 Unprocessable Entity
     }
     passport.authenticate('local')(req, res, () => {
       //req.flash("success",`Welcome to the application ${user.firstname}`)
       //res.redirect("/Learning")
-      res.status(200).json({ message: "success" })
+      const token = jwt.sign({ username: req.user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      res.status(200).json({ status : "success" , message: "successfully registered", data:req.user,token:token })
     })
   })
 })
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
-    if (err) return res.status(500).json({ message: "INTERNAL SERVER ERROR" });
+    if (err) return res.status(500).json({ status:"error" , message: "INTERNAL SERVER ERROR" });
     if (!user)
-      return res.status(401).json({ SERVER_RESPONSE: 0, SERVER_MESSAGE: `${info.message}` });
+      return res.status(401).json({ status: "error", message: `${info.message}` });
     req.logIn(user, function (err) {
       if (err)
         return next(err);
@@ -43,7 +44,7 @@ router.post('/login', function (req, res, next) {
       console.log(req.user)
       //const token = jwt.encode({ username: req.user.username}, process.env.JWT_SECRET);
       const token = jwt.sign({ username: req.user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-      return res.status(200).json({ SERVER_RESPONSE: 1, SERVER_MESSAGE: "Logged in!", TOKEN: token });
+      return res.status(200).json({ status: 1, message: "Logged in!", data:req.user , token: token });
     });
   })(req, res, next);
 });

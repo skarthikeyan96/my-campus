@@ -8,6 +8,7 @@ const logger = require('morgan');
 let User = require('./models/user');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const PostRouter = require('./routes/post')
 var app = express();
 // setting up the passport
 const session = require('express-session');
@@ -23,6 +24,12 @@ app.use(require('express-session')({
   resave: false,
   saveUninitialized: false
 }))
+//middleware to get the current user
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    return next();
+  });
+  
 //init the passport 
 app.use(passport.initialize());
 // session
@@ -42,6 +49,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/post',PostRouter) // Routes to post the discusion
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
