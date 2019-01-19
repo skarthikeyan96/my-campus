@@ -4,7 +4,7 @@ const Feed = require('../models/feed');
 const router = express.Router();
 
 router.get("/create",middleware.isLoggedIn,(req,res)=>{
-    res.render("/feed/Feed")
+    res.render("Feed",{title: 'My Campus | Feed'})
 })
 
 router.post("/create", middleware.isLoggedIn, (req, res) => {
@@ -13,7 +13,7 @@ router.post("/create", middleware.isLoggedIn, (req, res) => {
   let author = {
     id: req.user._id,
     username: req.user.username,
-    firstname: req.user.firstname
+    FullName: req.user.FullName
   }
   let post = { heading: heading, description: newPost, author: author }
   Feed.create(post, (err, new_post) => {
