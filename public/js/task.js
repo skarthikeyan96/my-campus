@@ -26,8 +26,10 @@ createTask = (e) => {
     postAPICall(`${baseURL}/task/create`, task, (err, res) => {
         if (err) {
             console.log(err);
+            showError(err.message);
         } else {
             console.log(res);
+            showSuccess(res.message);
         }
     })
 };
