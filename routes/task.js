@@ -49,13 +49,13 @@ router.get('/view/:id',middleware.isLoggedIn,(req,res)=>{
     }
   })
 })
-router.get("/addStatus",isLoggedIn,(req,res)=>{
+router.get("/addStatus", middleware.isLoggedIn, (req, res) => {
   res.send("getting status for task")
 })
-router.post("/addstatus",isLoggedIn,(req,res)=>{
+router.post("/addstatus", middleware.isLoggedIn, (req, res) => {
   let status;
   if(req.user.isAdmin == true){
-    status = "NONE" 
+    status = "NONE"
   }
   else if(req.user.isStudent == true && (!req.body.task_solution || req.body.task_solution.length == 0)){
     status = 'NO'
@@ -68,6 +68,6 @@ router.post("/addstatus",isLoggedIn,(req,res)=>{
     username: req.user.username,
     fullname: req.user.fullname,
   }
- let 
+ let
 })
 module.exports = router;

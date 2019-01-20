@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const PassportLocalMongoose = require('passport-local-mongoose')
+const PassportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = mongoose.Schema({
     username:String,
     FullName:String,
@@ -11,8 +11,13 @@ const UserSchema = mongoose.Schema({
     },
     isAdmin:{
        type:Boolean,
-       Default:false 
+       Default:false
     }
-})
-UserSchema.plugin(PassportLocalMongoose)
-module.exports = mongoose.model('User',UserSchema);
+});
+UserSchema.index({
+    FullName: 1,
+    username: 1,
+    email: 1
+});
+UserSchema.plugin(PassportLocalMongoose);
+module.exports = mongoose.model('User', UserSchema);

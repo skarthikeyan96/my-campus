@@ -53,6 +53,22 @@ router.get('/logout', (req, res) => {
   req.logout();
   //req.flash("success","You have been logged out")
   res.redirect('/')
-})
+});
+
+router.get('/search', (req, res) => {
+  let searchQuery = req.query.q;
+  User.find({ "username": new RegExp(searchQuery, "ig")})
+    .exec((err, users) => {
+      if (err) {
+        res.status(400).json({status: 'error', message: err.message });
+      } else {
+        res.status(200).json({
+          status: 'success',
+          message: 'Search Success',
+          users: users
+        });
+      }
+    });
+});
 
 module.exports = router;
