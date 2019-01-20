@@ -1,6 +1,6 @@
 // API endpoint declarations
 //const baseURL = `http://localhost:50000`;
-const baseURL = 'http://mycampusapp.azurewebsites.net'
+const baseURL = 'https://mycampusapp.azurewebsites.net'
 
 // Global vars
 let app, appui, chatui, wboard;
