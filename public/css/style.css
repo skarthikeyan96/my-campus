@@ -13,6 +13,7 @@ body {
     background-size: cover;
     font-family: verdana;
     color: #333;
+    font-size: 14px;
 }
 
 .bm {
@@ -144,6 +145,7 @@ body {
 }
 .content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -153,9 +155,18 @@ body {
     padding: 0 5%;
 }
 .intro {
-    font-size: 300%; font-weight: 300;
-    color: #888; margin: 0 5%;
+    font-size: 2em;
+    font-weight: 300;
+    color: #777; margin: 0 auto;
     font-family: 'Open Sans', sans-serif;
+    width: 60%;
+}
+.sub-intro {
+    font-size: 1em;
+    font-weight: 100;
+    color: #666;
+    margin: 0 auto;
+    width: 60%;
 }
 
 .wb-nav {
@@ -497,5 +508,12 @@ button {
 }
 /*
 @media all and (max-width: 680px) { .intro { font-size: 300%; } }
-@media all and (max-width: 480px) { .intro { font-size: 250%; } }
-@media all and (max-width: 376px) { .intro { font-size: 180%; } } */
+@media all and (max-width: 480px) { .intro { font-size: 250%; } }*/
+
+@media all and (max-width: 376px) {
+    .wb-title, .nav-items {
+        width: 100%;
+        justify-content: center;
+    }
+    .nav-items {padding: 0;}
+ } }
