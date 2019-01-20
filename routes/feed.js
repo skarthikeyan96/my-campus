@@ -46,7 +46,7 @@ router.get("/view",(req,res)=>{
 
 //
 router.get('/view/:id', middleware.isLoggedIn, (req, res) => {
-  Feed.findById(req.params.id, (err, data) => {
+  Feed.findById(req.params.id).populate("comments").exec((err, data) => {
     if (!err) {
       //render the show template
       res.render("post", {
@@ -103,13 +103,14 @@ router.post('/:id/comment',middleware.isLoggedIn, (req, res) => {
           FullName: req.user.FullName
         }
         let comment = { text: new_comment, author: author }
+        console.log(comment)
         Comments.create(comment, (err, comment) => {
           if (!err) {
             console.log("Added a new comment")
             console.log(post.comments)
             post.comments.push(comment)
             post.save();
-            res.redirect(`/learning/${post._id}`)
+            res.redirect(`/feed/view/${post._id}`)
           }
           else {
             console.log(err)

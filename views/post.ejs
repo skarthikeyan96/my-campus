@@ -26,14 +26,20 @@
             <%= post.created.getFullYear() %> </span>
             <p class="task-desc"><%= post.description %></p>
 
-            <form id="comment-form">
+            <form id="comment-form" action="/feed/<%= post._id %>/comment"  method="POST">
                 <div class="form-item">
-                    <textarea rows="3" cols="100" id="new_comment" placeholder="Your Comment" required></textarea>
+                    <textarea rows="3" cols="100" id="new_comment" name="comment" placeholder="Your Comment" required></textarea>
                 </div>
                 <div class="form-item">
                     <Button class="btn btn-primary" type="submit"> Submit </Button>
                 </div>
             </form>
+            <% post.comments.forEach(function(comment){ %>
+                <p>
+                    <%= comment.text %> by <strong>
+                    <%= comment.author.FullName%> </strong></p>
+                <% }); %>
+    
             <div class="feedback hidden" id="feedback_box"></div>
         </div>
 
