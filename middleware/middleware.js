@@ -57,7 +57,30 @@ module.exports = {
     else {
         res.send("You should be logged in to do that")
     }
+},
+checkCommentOwner : (req, res, next) => {
+  if (req.isAuthenticated()) {
+    Comments.findById(req.params.commentid, (err, comment) => {
+      if (!err) {
+        //user owns the campground
+        if (comment.author.id.equals(req.user._id)) {
+          next()
+        } else {
+          req.flash("error","Permission Denied")  
+          res.redirect('back')
+        }
+      }
+      else {
+        req.flash("error",err.message)
+        res.redirect('back')
+      }
+    })
+  }
+  else {
+    res.send("You should be logged in to do that")
+  }
 }
+
 
 
 }

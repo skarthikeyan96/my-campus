@@ -1,6 +1,7 @@
 const express = require('express');
 const middleware = require('../middleware/middleware')
 const Feed = require('../models/feed');
+const Comments = require("../models/comment");
 const router = express.Router();
 
 router.get("/create",middleware.isLoggedIn,(req,res)=>{
@@ -91,6 +92,56 @@ router.delete('/:id',middleware.checkFeedOwner,(req, res) => {
   })
 })
 
-
+router.post('/:id/comment',middleware.isLoggedIn, (req, res) => {
+    Feed.findById(req.params.id, function (err, post) {
+      if (!err) {
+        //render the show template
+        let new_comment = req.body.comment;
+        let author = {
+          id: req.user._id,
+          username: req.user.username,
+          FullName: req.user.FullName
+        }
+        let comment = { text: new_comment, author: author }
+        Comments.create(comment, (err, comment) => {
+          if (!err) {
+            console.log("Added a new comment")
+            console.log(post.comments)
+            post.comments.push(comment)
+            post.save();
+            res.redirect(`/learning/${post._id}`)
+          }
+          else {
+            console.log(err)
+          }
+        })
+      }
+    })
+  })
+  
+  router.get('/:id/comment/:commentid/edit',middleware.checkCommentOwner,(req,res)=>{
+    Comments.findById(req.params.commentid,(err,foundComment)=>{
+      if(!err){
+        res.render('edit_comment',{post_id:req.params.id,comment:foundComment})
+      }
+      else{
+        
+        res.redirect('/Feed')
+      }
+    })
+  })
+  
+  router.put('/:id/comment/:commentid',middleware.checkCommentOwner, (req, res) => {
+    Comments.findByIdAndUpdate(req.params.commentid, req.body.comment, (err, updatedComment) => {
+      if (!err) {
+        res.redirect(`/feed/${req.params.id}`)
+      }
+      else {
+        console.log(err)
+        res.redirect('/Feed')
+      }
+    })
+  })
+  
 
 module.exports = router;

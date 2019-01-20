@@ -14,7 +14,7 @@ const FeedSchema = new mongoose.Schema({
             ref : "User"
         },
         username  : String,
-        firstname : String
+        fullname : String
     },
     created:{
         type : Date,
