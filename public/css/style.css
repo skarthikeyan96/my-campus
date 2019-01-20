@@ -163,13 +163,13 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    font-size: 2.5em;
+    font-size: 2em;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     color: #444;
-    padding: 10px 5%;
+    padding: 1px 6%;
     font-family: 'Fredericka the Great', cursive;
 }
 .wb-title{
@@ -495,7 +495,7 @@ button {
     transition: all .5s;
     border-bottom: 1px dashed #ddd;
 }
-
+/*
 @media all and (max-width: 680px) { .intro { font-size: 300%; } }
 @media all and (max-width: 480px) { .intro { font-size: 250%; } }
-@media all and (max-width: 376px) { .intro { font-size: 180%; } }
+@media all and (max-width: 376px) { .intro { font-size: 180%; } } */
