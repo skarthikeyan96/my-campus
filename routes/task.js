@@ -13,7 +13,9 @@ router.post('/create',middleware.isLoggedIn,(req,res)=>{
     let author = {
        id: req.user._id,
        username: req.user.username,
-        firstname: req.user.firstname
+       fullname: req.user.fullname,
+       isStudent : req.user.isStudent,
+       isAdmin : req.user.isAdmin
      }
     let Deadline = req.body.deadline
     let task = { heading: heading, description: description, author: author,deadline:Deadline }
@@ -46,8 +48,6 @@ router.get('/view/:id',middleware.isLoggedIn,(req,res)=>{
     } else {
       res.status(500).json({status:"error" , message: err.message});
     }
-
   })
 })
-
 module.exports = router;

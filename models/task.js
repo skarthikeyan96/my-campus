@@ -17,6 +17,5 @@ const TaskSchema = new mongoose.Schema({
    deadline :{
        type:Date
    }
-
 })
 module.exports = mongoose.model("Task",TaskSchema)
