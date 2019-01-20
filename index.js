@@ -11,6 +11,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const taskRouter = require('./routes/task');
 const FeedRouter = require("./routes/feed");
+const ResourceRouter = require("./routes/resource");
+
 const app = express();
 // setting up the passport
 const session = require('express-session');
@@ -58,7 +60,10 @@ app.use((req, res, next) => {
 });
 app.use('/user', usersRouter);
 app.use('/task',taskRouter) // Routes to post the discusion
-app.use('/feed',FeedRouter)
+app.use('/feed',FeedRouter);
+app.use('/resource', ResourceRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

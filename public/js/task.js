@@ -61,7 +61,7 @@ createResource = (e) => {
         title: document.getElementById('nr_title').value,
         description: document.getElementById('nr_description').value,
         url: document.getElementById('nr_url').value,
-        author: app.user._id
+        author: app.user.id
     };
 
     console.log(resource);

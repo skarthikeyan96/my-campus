@@ -3,11 +3,11 @@ const middleware = require('../middleware/middleware');
 const Resource = require('../models/resource');
 const router = express.Router();
 
-router.get('/create', (req, res) => {
+router.get('/create', middleware.isLoggedIn, (req, res) => {
     res.render("newResource");
 });
 
-router.post('/create', (req, res) => {
+router.post('/create', middleware.isLoggedIn, (req, res) => {
     let data = req.body;
     let resource = {
         title: data.title,
@@ -30,11 +30,11 @@ router.post('/create', (req, res) => {
     })
 });
 
-router.get('/view', (req, res) => {
-    resource.find({}, function (err, resource) {
+router.get('/view', middleware.isLoggedIn, (req, res) => {
+    Resource.find({}, function (err, resources) {
         if (!err) {
             res.render("resources", {
-                data: resource
+                data: resources
             });
         } else {
             res.status(500).json({

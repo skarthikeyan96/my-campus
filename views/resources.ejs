@@ -20,27 +20,28 @@
     <div class="container">
         <% include header.ejs %>
         <div class="feed-list">
-            <% data.forEach(function(resource){ %>
-                <li class="feed-item">
-                    <span class="task-head">
-                        <%= resource.title %>
-                    </span>
-                    <div class="task-desc">
-                        <%= resource.description %>
+            <% if (data && data.length > 1) {%>
+                <% data.forEach(function(resource){ %>
+                    <li class="feed-item">
+                        <span class="task-head">
+                            <a href="<%= resource.url %>" target="_blank"><%= resource.title %> </a>
+                            </span>
+                            <div class="task-desc">
+                                <%= resource.description %>
+                            </div>
+                        </li>
+                        <% }); %>
+                        <% } else { %>
+                            <p> No resources to show</p>
+                            <% } %>
+                        </div>
+                        <a class="btn btn-primary" href="/resource/create">Add a resource</a>
                     </div>
-                    <div class="task-desc">
-                        <a href="<%= resource.url %>" target="_blank"> View Resource </a>
-                    </div>
-                </li>
-                <% }); %>
-            </div>
-            <a class="btn btn-primary" href="/resource/create">Add a resource</a>
-        </div>
 
-        <!-- Required Scripts -->
-        <script src="/js/main.js"></script>
-        <script src="/js/task.js"></script>
+                    <!-- Required Scripts -->
+                    <script src="/js/main.js"></script>
+                    <script src="/js/task.js"></script>
 
-    </body>
+                </body>
 
-    </html>
+                </html>
