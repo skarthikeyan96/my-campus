@@ -66,12 +66,12 @@ checkCommentOwner : (req, res, next) => {
         if (comment.author.id.equals(req.user._id)) {
           next()
         } else {
-          req.flash("error","Permission Denied")  
+        //  req.flash("error","Permission Denied")  
           res.redirect('back')
         }
       }
       else {
-        req.flash("error",err.message)
+        //req.flash("error",err.message)
         res.redirect('back')
       }
     })
@@ -79,6 +79,21 @@ checkCommentOwner : (req, res, next) => {
   else {
     res.send("You should be logged in to do that")
   }
+},
+checkAdmin :(req,res,next)=>{
+  if(req.isAuthenticated){
+    //user is authenthicated
+    if(req.user.isAdmin == true){
+      next()
+    }
+    else{
+      res.redirect('back')
+    }
+  }
+  else{
+    res.redirect('back')
+  }
+
 }
 
 

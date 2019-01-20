@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const taskRouter = require('./routes/task');
 const FeedRouter = require("./routes/feed");
+const announcerouter = require('./routes/annonuncement');
 const ResourceRouter = require("./routes/resource");
 
 const app = express();
@@ -62,7 +63,7 @@ app.use('/user', usersRouter);
 app.use('/task',taskRouter) // Routes to post the discusion
 app.use('/feed',FeedRouter);
 app.use('/resource', ResourceRouter);
-
+app.use('/announce',announcerouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

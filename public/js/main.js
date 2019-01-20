@@ -1,5 +1,5 @@
 // API endpoint declarations
-//  const baseURL = `http://localhost:50000`;
+//const baseURL = `http://localhost:50000`;
 const baseURL = 'https://mycampusapp.azurewebsites.net';
 
 // Global vars
