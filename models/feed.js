@@ -14,11 +14,12 @@ const FeedSchema = new mongoose.Schema({
             ref : "User"
         },
         username  : String,
-        fullname : String
+        FullName : String
     },
     created:{
         type : Date,
         default :Date.now()
    }
+
 })
 module.exports = mongoose.model("Feed",FeedSchema)

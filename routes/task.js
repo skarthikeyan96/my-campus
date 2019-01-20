@@ -49,25 +49,4 @@ router.get('/view/:id',middleware.isLoggedIn,(req,res)=>{
     }
   })
 })
-router.get("/addStatus", middleware.isLoggedIn, (req, res) => {
-  res.send("getting status for task")
-})
-router.post("/addstatus", middleware.isLoggedIn, (req, res) => {
-  let status;
-  if(req.user.isAdmin == true){
-    status = "NONE"
-  }
-  else if(req.user.isStudent == true && (!req.body.task_solution || req.body.task_solution.length == 0)){
-    status = 'NO'
-  }
-  else{
-    status = "YES"
-  }
-  let author = {
-    id: req.user._id,
-    username: req.user.username,
-    fullname: req.user.fullname,
-  }
- let
-})
 module.exports = router;
