@@ -21,21 +21,21 @@
         <% include header.ejs %>
         <h2> Create Task</h2>
         <div class="">
-            <form class="task-form" id="newTaskForm">
-
+            <form class="task-form" id="newResourceForm">
                 <div class="form-item">
                     <label>Title</label>
-                    <input type="text" id="nt_heading" placeholder="Title" autofocus required></input>
+                    <input type="text" id="nr_title" placeholder="Title" autofocus required></input>
                 </div>
 
                 <div class="form-item">
                     <label>Description</i></label>
-                    <textarea rows="10" cols="50" id="nt_description" placeholder="Enter the description of task" required></textarea>
+                    <textarea rows="10" cols="50" id="nr_description" placeholder="Enter the description of resource"
+                    required></textarea>
                 </div>
 
                 <div class="form-item">
-                    <label>Due Date</label>
-                    <input type="Date" id="nt_deaddline" placeholder="Password" required></input>
+                    <label>URL</label>
+                    <input type="text" id="nr_url" placeholder="URL of resource" required></input>
                 </div>
 
                 <div class="form-item">
@@ -52,7 +52,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/task.js"></script>
     <script>
-        document.getElementById('newTaskForm').addEventListener('submit', e => createTask(e));
+        document.getElementById('newResourceForm').addEventListener('submit', e => createResource(e));
     </script>
 
 </body>

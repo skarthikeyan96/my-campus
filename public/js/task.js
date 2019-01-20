@@ -55,3 +55,26 @@ createPost = (e) => {
     e.target.reset();
 };
 
+createResource = (e) => {
+    e.preventDefault();
+    let resource = {
+        title: document.getElementById('nr_title').value,
+        description: document.getElementById('nr_description').value,
+        url: document.getElementById('nr_url').value,
+        author: app.user._id
+    };
+
+    console.log(resource);
+
+    postAPICall(`${baseURL}/resource/create`, resource, (err, res) => {
+        if (err) {
+            console.log(err);
+            showError(err.message);
+        } else {
+            console.log(res);
+            showSuccess(res.message);
+        }
+    })
+    e.target.reset();
+};
+

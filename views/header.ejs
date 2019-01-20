@@ -7,17 +7,17 @@
             <button class="nav-item"><a href="#">Blog</a></button>
             <button class="nav-item"><a href="https://github.com/skarthikeyan96/my-campus">Github</a></button>
             <button class="nav-item"><a href="/user/login">Login</a></button>
-        <%} else {%>
-            <% if(currentUser.isStudent == true && currentUser.isAdmin == false){ %>
-                <button class="nav-item"><a href="/feed/view">Forum</a></button>
-                <button class="nav-item"><a href="/task/view">Tasks</a></button>
-                <button class="nav-item"><a href="#">Announcements</a></button>
-            <% } else{%>
-                <button class="nav-item"><a href="#">Admin Dashboard</a></button>
-                <button class="nav-item"><a href="/task/create">Add Task</a></button>
-            <% } %>
-            <button class="nav-item"><a href="#"> <%= currentUser.FullName %> </a></button>
-            <button class="nav-item"><a href="/user/logout"> Logout </a></button>
-        <% } %>
-    </div>
-</div>
+            <%} else {%>
+                <% if(currentUser.isStudent == true && currentUser.isAdmin == false){ %>
+                    <button class="nav-item"><a href="/feed/view">Forum</a></button>
+                    <button class="nav-item"><a href="/task/view">Tasks</a></button>
+                    <% } else{%>
+                        <button class="nav-item"><a href="#">Admin Dashboard</a></button>
+                        <button class="nav-item"><a href="/task/create">Add Task</a></button>
+                        <% } %>
+                        <button class="nav-item"><a href="/resources/view">Resources</a></button>
+                        <button class="nav-item"><a href="#"> <%= currentUser.FullName %> </a></button>
+                        <button class="nav-item"><a href="/user/logout"> Logout </a></button>
+                        <% } %>
+                    </div>
+                </div>
